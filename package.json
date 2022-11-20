@@ -1,7 +1,6 @@
 {
   "name": "vue2-practice",
   "version": "0.0.0",
-  "homepage": "https://gaohaoyang.github.io/vue2-practice",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
