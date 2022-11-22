@@ -44,7 +44,7 @@ export default {
     // },
   },
   computed: {
-    reverseMessage() {
+    reverseMessage(): string {
       return this.message.split('').reverse().join('')
     },
   },

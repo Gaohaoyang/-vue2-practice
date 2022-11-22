@@ -1,9 +1,9 @@
-import { fileURLToPath, URL } from 'node:url';
+import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite';
-import legacy from '@vitejs/plugin-legacy';
-import vue2 from '@vitejs/plugin-vue2';
-import vue2Jsx from '@vitejs/plugin-vue2-jsx';
+import { defineConfig } from 'vite'
+import legacy from '@vitejs/plugin-legacy'
+import vue2 from '@vitejs/plugin-vue2'
+import vue2Jsx from '@vitejs/plugin-vue2-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => ({
@@ -21,4 +21,4 @@ export default defineConfig(({ command, mode }) => ({
     },
   },
   base: mode === 'production' ? '/vue2-practice/' : '/',
-}));
+}))
