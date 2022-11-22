@@ -2,7 +2,7 @@
   <div>
     <span
       v-for="(item, index) in dots"
-      :key="item"
+      :key="index"
       :style="{
         animationDelay: `${80 * index}ms`,
       }"
