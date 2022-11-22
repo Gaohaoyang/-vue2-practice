@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+// import HomeView from '../views/HomeView.vue'
+import DogsBreedList from '../views/DogsBreedList.vue'
 
 Vue.use(VueRouter)
 
@@ -10,16 +11,19 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      name: 'dogsBreedList',
+      component: DogsBreedList,
+      meta: {
+        keepAlive: true, // 需要被缓存
+      },
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: '/dogPics/:breed',
+      name: 'dogPics',
+      component: () => import('../views/DogPics.vue'),
+      meta: {
+        keepAlive: false,
+      },
     },
     {
       path: '/learn',

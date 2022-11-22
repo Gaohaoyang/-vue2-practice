@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="wrap">
+    Loading
     <span
       v-for="(item, index) in dots"
       :key="index"
@@ -26,6 +27,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.wrap {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
 @keyframes pointAnimation {
   0% {
     transform: translateY(0) translateZ(0);

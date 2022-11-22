@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import LearnViewItem from '@/views/LearnViewItem.vue'
-import LoadingDots from '@/views/LoadingDots.vue'
+import LoadingDots from '@/components/LoadingDots.vue'
 
 export default {
   data: () => ({
