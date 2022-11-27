@@ -2,7 +2,19 @@
   <div>
     <LoadingDots v-if="loading" />
     <ErrStatus v-if="showErr" />
-    <BreedItem v-for="(value, name) in breeds" :key="name" :name="name" />
+    <transition-group
+      name="staggered-fade"
+      tag="ul"
+      v-bind:css="false"
+      v-on:enter="enter"
+    >
+      <BreedItem
+        v-for="(value, name, index) in breeds"
+        :key="name"
+        :name="name"
+        :index="index"
+      />
+    </transition-group>
   </div>
 </template>
 
@@ -12,6 +24,7 @@ import LoadingDots from '@/components/LoadingDots.vue'
 import BreedItem from '@/components/BreedItem.vue'
 import axios from 'axios'
 import Vue from 'vue'
+import anime from 'animejs/lib/anime.es.js'
 
 const Component = Vue.extend({
   created() {
@@ -52,9 +65,32 @@ const Component = Vue.extend({
       this.showErr = true
       this.loading = false
     },
+    // beforeEnter(el: HTMLElement) {
+    // },
+    enter(el: HTMLElement, done: () => void) {
+      anime({
+        targets: el,
+        opacity: [0, 1],
+        translateX: [100, 0],
+        delay: Number(el.getAttribute('index')) * 80,
+        complete: () => {
+          done()
+        },
+      })
+    },
+    // leave(el: HTMLElement, done: () => void) {
+    // },
   },
 })
 export default Component
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+ul {
+  list-style: none;
+  padding: 0;
+}
+a {
+  display: block;
+}
+</style>
