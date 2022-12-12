@@ -40,6 +40,6 @@ h1 {
 }
 .placeholder {
   width: 100vw;
-  height: 55px;
+  height: 50px;
 }
 </style>
