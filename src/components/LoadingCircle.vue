@@ -31,7 +31,16 @@
             height: lineWidth + 'px',
           }"
         ></div> -->
+      <!-- <div
+        v-if="index === 1"
+        class="edge1 edge"
+        :style="{
+          width: lineWidth + 'px',
+          height: lineWidth + 'px',
+        }"
+      ></div> -->
       <div
+        v-if="index === periodArr.length - 1"
         class="edge2 edge"
         :style="{
           width: lineWidth + 'px',
@@ -95,7 +104,7 @@ export default Vue.extend({
   /* background-color: #4a63ff; */
   /* clip: rect(0 96px 50px 96px); */
   /* border-radius: 50%; */
-  animation: rotateAnim 1.6s ease-in-out infinite forwards;
+  animation: rotateAnim 1.7s ease-in-out infinite forwards;
   transform-origin: left bottom;
   overflow: hidden;
 }
@@ -136,10 +145,19 @@ export default Vue.extend({
 .edge {
   border-radius: 50%;
   position: absolute;
-  right: 12px;
-  /* bottom: 0; */
-  top: 12px;
   background-color: red;
+}
+
+.edge1 {
+  right: 0px;
+  bottom: -10px;
+  background-color: blue;
+  z-index: 1;
+}
+
+.edge2 {
+  right: 12px;
+  top: 12px;
 }
 
 /* .inner::after {
