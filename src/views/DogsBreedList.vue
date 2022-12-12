@@ -25,10 +25,13 @@ import BreedItem from '@/components/BreedItem.vue'
 import axios from 'axios'
 import Vue from 'vue'
 import anime from 'animejs/lib/anime.es.js'
+import { mapActions } from 'pinia'
+import { useNavbarName } from '../stores/navbarName'
 
 const Component = Vue.extend({
   created() {
     console.log('created')
+    this.changeTitle('Dogs breed list')
     this.getBreedList()
   },
   components: {
@@ -42,6 +45,7 @@ const Component = Vue.extend({
     loading: true,
   }),
   methods: {
+    ...mapActions(useNavbarName, ['changeTitle']), //映射action
     getBreedList() {
       axios
         .get('https://dog.ceo/api/breeds/list/all/random/50')

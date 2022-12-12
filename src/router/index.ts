@@ -26,6 +26,14 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/CircleLoadingDemo',
+      name: 'CircleLoadingDemo',
+      component: () => import('../views/CircleLoadingDemo.vue'),
+      meta: {
+        keepAlive: true,
+      },
+    },
+    {
       path: '/learn',
       name: 'learn',
       // route level code-splitting

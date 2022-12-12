@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useNavbarName = defineStore({
   id: 'navbarName',
   state: () => ({
-    navbarName: 'Dogs Breeds List',
+    navbarName: '',
   }),
   actions: {
     changeTitle(param: string) {
