@@ -145,7 +145,7 @@ export default Vue.extend({
   props: {
     size: {
       type: Number,
-      default: 92,
+      default: 96,
     },
   },
   data() {
