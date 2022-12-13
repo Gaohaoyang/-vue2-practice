@@ -4,67 +4,136 @@
     :style="{
       width: size + 'px',
       height: size + 'px',
-      // @ts-ignore
-      webkitMaskImage: `-webkit-radial-gradient(transparent ${
-        size / 2 - lineWidth
-      }px, #000 ${size / 2 - lineWidth}px)`,
-      maskImage: `radial-gradient(transparent ${size / 2 - lineWidth}px, #000 ${
-        size / 2 - lineWidth
-      }px)`,
     }"
   >
     <div
-      class="inner-wrap"
-      v-for="(item, index) in periodArr"
-      :key="item"
+      class="loading-wrap-big"
       :style="{
-        animationDelay: `${index * 0.1}s`,
-        width: size / 2 + 'px',
-        height: size / 2 + 'px',
+        width: size + 'px',
+        height: size + 'px',
+        // @ts-ignore
+        webkitMaskImage: `-webkit-radial-gradient(${radialGradientValue})`,
+        maskImage: `radial-gradient(${radialGradientValue})`,
       }"
     >
       <div
-        class="inner"
+        class="inner-wrap"
+        v-for="(item, index) in periodArr"
+        :key="item"
         :style="{
+          animationDelay: `${index * 0.1}s`,
           width: size / 2 + 'px',
           height: size / 2 + 'px',
         }"
       >
         <div
-          class="circle"
+          class="inner"
           :style="{
-            width: size + 'px',
-            height: size + 'px',
+            width: size / 2 + 'px',
+            height: size / 2 + 'px',
           }"
         >
           <div
-            class="skew"
+            class="circle"
             :style="{
               width: size + 'px',
               height: size + 'px',
-              backgroundColor: bigCircleColor,
             }"
-          ></div>
+          >
+            <div
+              class="skew"
+              :style="{
+                width: size + 'px',
+                height: size + 'px',
+                backgroundColor: bigCircleColor,
+              }"
+            ></div>
+          </div>
         </div>
+        <div
+          v-if="index === 0"
+          class="edge1 edge"
+          :style="{
+            width: lineWidth + 'px',
+            height: lineWidth + 'px',
+            backgroundColor: bigCircleColor,
+          }"
+        ></div>
+        <div
+          v-if="index === periodArr.length - 1"
+          class="edge2 edge"
+          :style="{
+            width: lineWidth + 'px',
+            height: lineWidth + 'px',
+            backgroundColor: bigCircleColor,
+          }"
+        ></div>
       </div>
+    </div>
+
+    <div
+      class="loading-wrap-small"
+      :style="{
+        width: smallCircleRadius * 2 + 'px',
+        height: smallCircleRadius * 2 + 'px',
+        // @ts-ignore
+        webkitMaskImage: `-webkit-radial-gradient(${radialGradientValueSmall})`,
+        maskImage: `radial-gradient(${radialGradientValueSmall})`,
+      }"
+    >
       <div
-        v-if="index === 0"
-        class="edge1 edge"
+        class="inner-wrap"
+        v-for="(item, index) in periodArr"
+        :key="item"
         :style="{
-          width: lineWidth + 'px',
-          height: lineWidth + 'px',
-          backgroundColor: bigCircleColor,
+          animationDelay: `${index * 0.1 + 0.5}s`,
+          width: smallCircleRadius + 'px',
+          height: smallCircleRadius + 'px',
         }"
-      ></div>
-      <div
-        v-if="index === periodArr.length - 1"
-        class="edge2 edge"
-        :style="{
-          width: lineWidth + 'px',
-          height: lineWidth + 'px',
-          backgroundColor: bigCircleColor,
-        }"
-      ></div>
+      >
+        <div
+          class="inner"
+          :style="{
+            width: smallCircleRadius + 'px',
+            height: smallCircleRadius + 'px',
+          }"
+        >
+          <div
+            class="circle"
+            :style="{
+              width: smallCircleRadius * 2 + 'px',
+              height: smallCircleRadius * 2 + 'px',
+            }"
+          >
+            <div
+              class="skew"
+              :style="{
+                width: smallCircleRadius * 2 + 'px',
+                height: smallCircleRadius * 2 + 'px',
+                backgroundColor: smallCircleColor,
+              }"
+            ></div>
+          </div>
+        </div>
+        <div
+          v-if="index === 0"
+          class="edge1 edge"
+          :style="{
+            width: lineWidth + 'px',
+            height: lineWidth + 'px',
+            backgroundColor: smallCircleColor,
+          }"
+        ></div>
+        <div
+          v-if="index === periodArr.length - 1"
+          class="edge2small edge"
+          :style="{
+            width: lineWidth + 'px',
+            height: lineWidth + 'px',
+            backgroundColor: smallCircleColor,
+          }"
+        ></div>
+      </div>
     </div>
   </div>
 </template>
@@ -76,21 +145,46 @@ export default Vue.extend({
   props: {
     size: {
       type: Number,
-      default: 100,
+      default: 92,
     },
   },
   data() {
     return {
       periodArr: [1, 2, 3, 4, 5, 6],
       bigCircleColor: '#4A63FF',
+      smallCircleColor: '#FFC53A',
     }
   },
   computed: {
+    scale(): number {
+      return this.size / 526
+    },
     lineWidth(): number {
-      if (this.size) {
-        return ((this.size as number) / 526) * 67.5
-      }
-      return 0
+      return this.scale * 67.5
+    },
+    gapWidth(): number {
+      return this.scale * 8
+    },
+    smallCircleRadius(): number {
+      return this.size / 2 - this.lineWidth - this.gapWidth
+    },
+    radialGradientValue(): string {
+      const circle1 = this.size / 2
+      const circle2 = circle1 - this.lineWidth
+      return `
+        transparent ${circle2}px,
+        #000 ${circle2}px,
+        #000 ${circle1}px,
+        transparent ${circle1}px`
+    },
+    radialGradientValueSmall(): string {
+      const circle1 = this.size / 2 - this.lineWidth - this.gapWidth
+      const circle2 = circle1 - this.lineWidth
+      return `
+        transparent ${circle2}px,
+        #000 ${circle2}px,
+        #000 ${circle1}px,
+        transparent ${circle1}px`
     },
   },
 })
@@ -98,11 +192,19 @@ export default Vue.extend({
 
 <style scoped>
 .loading-wrap {
-  /* background-color: #333; */
-  border-radius: 50%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* border: 1px solid #f00; */
-  animation: loadingWrapAnim 6s linear infinite;
+}
+
+.loading-wrap-big {
+  /* background-color: #bbb; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: loadingWrapAnim 1.4s linear infinite;
 }
 
 @keyframes loadingWrapAnim {
@@ -190,6 +292,17 @@ export default Vue.extend({
   right: 27%;
   top: 24%;
   /* background-color: blue; */
+}
+
+.edge2small {
+  right: 27%;
+  top: 21%;
+  /* background-color: red; */
+}
+
+.loading-wrap-small {
+  /* background-color: #333; */
+  animation: loadingWrapAnim 1.7s linear infinite;
 }
 
 /* .inner::after {
