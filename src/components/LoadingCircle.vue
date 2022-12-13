@@ -14,37 +14,55 @@
     }"
   >
     <div
-      class="inner"
+      class="inner-wrap"
       v-for="(item, index) in periodArr"
       :key="item"
       :style="{
         animationDelay: `${index * 0.1}s`,
+        width: size / 2 + 'px',
+        height: size / 2 + 'px',
       }"
     >
-      <div class="circle">
-        <div class="skew"></div>
-      </div>
-      <!-- <div
-          class="edge1 edge"
+      <div
+        class="inner"
+        :style="{
+          width: size / 2 + 'px',
+          height: size / 2 + 'px',
+        }"
+      >
+        <div
+          class="circle"
           :style="{
-            width: lineWidth + 'px',
-            height: lineWidth + 'px',
+            width: size + 'px',
+            height: size + 'px',
           }"
-        ></div> -->
-      <!-- <div
-        v-if="index === 1"
+        >
+          <div
+            class="skew"
+            :style="{
+              width: size + 'px',
+              height: size + 'px',
+              backgroundColor: bigCircleColor,
+            }"
+          ></div>
+        </div>
+      </div>
+      <div
+        v-if="index === 0"
         class="edge1 edge"
         :style="{
           width: lineWidth + 'px',
           height: lineWidth + 'px',
+          backgroundColor: bigCircleColor,
         }"
-      ></div> -->
+      ></div>
       <div
         v-if="index === periodArr.length - 1"
         class="edge2 edge"
         :style="{
           width: lineWidth + 'px',
           height: lineWidth + 'px',
+          backgroundColor: bigCircleColor,
         }"
       ></div>
     </div>
@@ -58,12 +76,13 @@ export default Vue.extend({
   props: {
     size: {
       type: Number,
-      default: 96,
+      default: 100,
     },
   },
   data() {
     return {
       periodArr: [1, 2, 3, 4, 5, 6],
+      bigCircleColor: '#4A63FF',
     }
   },
   computed: {
@@ -90,22 +109,32 @@ export default Vue.extend({
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
 
+.inner-wrap {
+  /* width: 48px;
+  height: 48px; */
+  position: absolute;
+  right: 0;
+  top: 0;
+  animation: rotateAnim 1.8s ease-in-out infinite;
+  transform-origin: left bottom;
+}
+
 .inner {
-  width: 48px;
-  height: 48px;
+  /* width: 48px;
+  height: 48px; */
   position: absolute;
   right: 0;
   top: 0;
   /* background-color: #4a63ff; */
   /* clip: rect(0 96px 50px 96px); */
   /* border-radius: 50%; */
-  animation: rotateAnim 1.7s ease-in-out infinite forwards;
-  transform-origin: left bottom;
+
   overflow: hidden;
 }
 
@@ -113,9 +142,11 @@ export default Vue.extend({
   0% {
     transform: rotate(0deg);
   }
+
   80% {
     transform: rotate(360deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -125,21 +156,22 @@ export default Vue.extend({
   position: absolute;
   right: 0;
   top: 0;
-  width: 96px;
-  height: 96px;
+  /* width: 96px;
+  height: 96px; */
   border-radius: 50%;
   /* background: blue; */
   overflow: hidden;
 }
+
 .skew {
   transform: skewX(135deg);
   transform-origin: 0 100%;
   position: absolute;
   right: 0;
   top: 0;
-  background: red;
-  width: 100px;
-  height: 100px;
+  background-color: red;
+  /* width: 100px;
+  height: 100px; */
 }
 
 .edge {
@@ -149,15 +181,15 @@ export default Vue.extend({
 }
 
 .edge1 {
-  right: 0px;
-  bottom: -10px;
-  background-color: blue;
+  right: 0;
+  bottom: -14%;
   z-index: 1;
 }
 
 .edge2 {
-  right: 12px;
-  top: 12px;
+  right: 27%;
+  top: 24%;
+  /* background-color: blue; */
 }
 
 /* .inner::after {
