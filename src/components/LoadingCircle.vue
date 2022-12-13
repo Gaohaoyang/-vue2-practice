@@ -163,7 +163,7 @@ export default Vue.extend({
       return this.scale * 67.5
     },
     gapWidth(): number {
-      return this.scale * 8
+      return this.scale * 7
     },
     smallCircleRadius(): number {
       return this.size / 2 - this.lineWidth - this.gapWidth
