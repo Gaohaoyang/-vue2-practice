@@ -34,6 +34,14 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/PDFViewDemo',
+      name: 'PDFViewDemo',
+      component: () => import('../views/PDFViewDemo.vue'),
+      meta: {
+        keepAlive: true,
+      },
+    },
+    {
       path: '/learn',
       name: 'learn',
       // route level code-splitting
