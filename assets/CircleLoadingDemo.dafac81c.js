@@ -1,4 +1,4 @@
-import{V as s,n as r,m as d,u as n}from"./index.35177442.js";const c=s.extend({props:{size:{type:Number,default:96}},data(){return{periodArr:[1,2,3,4,5,6],bigCircleColor:"#4A63FF",smallCircleColor:"#FFC53A"}},computed:{scale(){return this.size/526},lineWidth(){return this.scale*67.5},gapWidth(){return this.scale*7},smallCircleRadius(){return this.size/2-this.lineWidth-this.gapWidth},radialGradientValue(){const t=this.size/2,e=t-this.lineWidth;return`
+import{V as s,n as r,m as d,u as n}from"./index.deb3ba96.js";const c=s.extend({props:{size:{type:Number,default:96}},data(){return{periodArr:[1,2,3,4,5,6],bigCircleColor:"#4A63FF",smallCircleColor:"#FFC53A"}},computed:{scale(){return this.size/526},lineWidth(){return this.scale*67.5},gapWidth(){return this.scale*7},smallCircleRadius(){return this.size/2-this.lineWidth-this.gapWidth},radialGradientValue(){const t=this.size/2,e=t-this.lineWidth;return`
         transparent ${e}px,
         #000 ${e}px,
         #000 ${t}px,
