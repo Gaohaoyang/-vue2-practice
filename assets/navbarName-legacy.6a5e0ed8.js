@@ -1,0 +1,1 @@
+System.register(["./index-legacy.fad37f8e.js"],(function(e,t){"use strict";var n;return{setters:[function(e){n=e.d}],execute:function(){e("u",n({id:"navbarName",state:function(){return{navbarName:""}},actions:{changeTitle:function(e){this.navbarName=e}}}))}}}));
