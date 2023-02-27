@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar :title="$route.params.breed"></Navbar>
     <LoadingDots v-if="loading" />
     <ErrStatus v-if="showErr" />
     <Pic
@@ -19,18 +20,17 @@ import axios from 'axios'
 import ErrStatus from '@/components/ErrStatus.vue'
 import LoadingDots from '@/components/LoadingDots.vue'
 import Pic from '@/components/Pic.vue'
-import { mapActions } from 'pinia'
-import { useNavbarName } from '../stores/navbarName'
+import Navbar from '../components/NavBar.vue'
 
 export default Vue.extend({
   created() {
-    this.changeTitle(`Pics of ${this.$route.params.breed}`)
     this.getDogsPics()
   },
   components: {
     ErrStatus,
     LoadingDots,
     Pic,
+    Navbar,
   },
   data: () => ({
     showErr: false,
@@ -38,7 +38,6 @@ export default Vue.extend({
     pics: [] as Array<string>,
   }),
   methods: {
-    ...mapActions(useNavbarName, ['changeTitle']), //映射action
     getDogsPics() {
       axios
         .get(
@@ -64,12 +63,6 @@ export default Vue.extend({
       this.showErr = true
       this.loading = false
     },
-  },
-  beforeRouteLeave(to, from, next) {
-    if (to.name === 'dogsBreedList') {
-      this.changeTitle('Dogs Breeds List')
-    }
-    next()
   },
 })
 </script>

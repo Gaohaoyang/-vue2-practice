@@ -1,15 +1,26 @@
-<script setup>
-import NavBar from './components/NavBar.vue'
-</script>
+<script setup></script>
 
 <template>
   <div id="app">
-    <NavBar />
-    <keep-alive>
-      <router-view v-if="$route.meta.keepAlive" />
-    </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <transition name="router-fade" mode="out-in">
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive" />
+      </keep-alive>
+    </transition>
+    <transition name="router-fade" mode="out-in">
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </transition>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.router-fade-enter-active,
+.router-fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.router-fade-enter,
+.router-fade-leave-active {
+  opacity: 0;
+}
+</style>

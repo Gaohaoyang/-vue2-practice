@@ -21,4 +21,7 @@ export default defineConfig(({ command, mode }) => ({
     },
   },
   base: mode === 'production' ? '/vue2-practice/' : '/',
+  server: {
+    host: true,
+  },
 }))

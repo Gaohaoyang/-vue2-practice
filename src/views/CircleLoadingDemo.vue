@@ -1,10 +1,7 @@
 <template>
   <div class="wrap">
-    <LoadingCircle />
     <div style="height: 80px"></div>
-    <LoadingCircle size="200" />
-    <!-- <div class="loading"></div> -->
-    <!-- <div class="test">test</div> -->
+    <LoadingCircle :size="60" />
   </div>
 </template>
 

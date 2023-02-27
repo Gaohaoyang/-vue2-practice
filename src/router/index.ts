@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
 import DogsBreedList from '../views/DogsBreedList.vue'
+import AppHome from '../views/AppHome.vue'
 
 Vue.use(VueRouter)
 
@@ -11,6 +11,14 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
+      name: 'AppHome',
+      component: AppHome,
+      meta: {
+        keepAlive: true, // 需要被缓存
+      },
+    },
+    {
+      path: '/dogsBreedList',
       name: 'dogsBreedList',
       component: DogsBreedList,
       meta: {

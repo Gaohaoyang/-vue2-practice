@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar title="Dog Breed List"></Navbar>
     <LoadingDots v-if="loading" />
     <ErrStatus v-if="showErr" />
     <transition-group
@@ -25,19 +26,18 @@ import BreedItem from '@/components/BreedItem.vue'
 import axios from 'axios'
 import Vue from 'vue'
 import anime from 'animejs/lib/anime.es.js'
-import { mapActions } from 'pinia'
-import { useNavbarName } from '../stores/navbarName'
+import Navbar from '../components/NavBar.vue'
 
 const Component = Vue.extend({
   created() {
     console.log('created')
-    this.changeTitle('Dogs breed list')
     this.getBreedList()
   },
   components: {
     ErrStatus,
     LoadingDots,
     BreedItem,
+    Navbar,
   },
   data: () => ({
     breeds: {} as Record<string, Array<string>>,
@@ -45,10 +45,9 @@ const Component = Vue.extend({
     loading: true,
   }),
   methods: {
-    ...mapActions(useNavbarName, ['changeTitle']), //映射action
     getBreedList() {
       axios
-        .get('https://dog.ceo/api/breeds/list/all/random/50')
+        .get('https://dog.ceo/api/breeds/list/all/random/10')
         .then((res) => {
           console.log(res.data)
           if (res.data.status === 'success') {
