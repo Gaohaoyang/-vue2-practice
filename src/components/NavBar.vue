@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="safe-area"></div>
-    <div class="wrap">
+    <div class="wrap" @click="handleBack">
+      <div class="back"><</div>
       <h1>{{ title }}</h1>
     </div>
     <div class="placeholder"></div>
@@ -16,6 +17,11 @@ const Navbar = Vue.extend({
     title: {
       type: String,
       default: '',
+    },
+  },
+  methods: {
+    handleBack() {
+      this.$router.go(-1)
     },
   },
 })
@@ -37,6 +43,18 @@ export default Navbar
   z-index: 100;
 }
 
+.back {
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  top: 0;
+  left: 4px;
+  /* background-color: #444; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .safe-area {
   height: calc(constant(safe-area-inset-top));
   height: calc(env(safe-area-inset-top));
@@ -46,6 +64,7 @@ h1 {
   font-size: 24px;
   font-weight: bold;
 }
+
 .placeholder {
   width: 100vw;
   height: 44px;

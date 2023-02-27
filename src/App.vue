@@ -14,9 +14,12 @@
 </template>
 
 <style scoped>
+#app {
+  min-height: 100vh;
+}
 .router-fade-enter-active,
 .router-fade-leave-active {
-  transition: opacity 0.2s;
+  transition: opacity 0.4s;
 }
 
 .router-fade-enter,

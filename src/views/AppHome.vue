@@ -47,6 +47,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.container {
+  min-height: 100vh;
+}
+
 .home-list {
   display: flex;
   flex-wrap: wrap;

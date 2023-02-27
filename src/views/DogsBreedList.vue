@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <Navbar title="Dog Breed List"></Navbar>
     <LoadingDots v-if="loading" />
     <ErrStatus v-if="showErr" />
@@ -89,6 +89,9 @@ export default Component
 </script>
 
 <style lang="css" scoped>
+.container {
+  min-height: 100vh;
+}
 ul {
   list-style: none;
   padding: 0;

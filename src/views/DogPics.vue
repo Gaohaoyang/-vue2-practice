@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <Navbar :title="$route.params.breed"></Navbar>
     <LoadingDots v-if="loading" />
     <ErrStatus v-if="showErr" />
@@ -67,4 +67,8 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  min-height: 100vh;
+}
+</style>
